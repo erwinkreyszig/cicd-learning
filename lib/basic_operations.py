@@ -19,7 +19,7 @@ def multiply(val1, val2):
 	return result
 
 def test():
-	print(add(1, 2))
-	print(add(-1, -2))
-	print(add(1, -1))
+	assert 3 == add(1, 2)
+	assert -3 == add(-1, -2)
+	assert 0 == add(1, -1)
 
