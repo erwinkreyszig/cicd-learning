@@ -12,6 +12,10 @@ def substract(val1, val2):
 	else:
 		return -1
 		
+def multiply(val1, val2):
+	for val in range(val2):
+		result = val1 + val2
+		return result
 
 def test():
 	print(add(1, 2))
