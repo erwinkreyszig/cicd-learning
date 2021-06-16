@@ -1,12 +1,10 @@
 def add(val1, val2):
 	"""Adds 2 int numbers and returns the result"""
-	if type(val1) == int and type(val2) == int:
-		result = val1 + val2
-		return result
-	else:
-		return -1
+	if type(val1) != int or type(val2) != int:
+		raise Exception
+	return val1 + val2
 
-def substract(val1, val2):
+def subtract(val1, val2):
 	if type(val1) != int or type(val2) != int:
 		raise Exception
 	return val1 - val2
