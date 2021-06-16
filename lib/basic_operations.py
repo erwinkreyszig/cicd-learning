@@ -15,6 +15,7 @@ def multiply(val1, val2):
 	return result
 
 def divide(val1, val2):
+	"""Devide an int number by another"""
 	return val1 / val2
 
 def test():
