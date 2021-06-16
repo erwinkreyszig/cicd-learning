@@ -14,6 +14,9 @@ def multiply(val1, val2):
 		result = val1 + val2
 	return result
 
+def divide(val1, val2):
+	return val1 / val2
+
 def test():
 	assert 3 == add(1, 2)
 	assert -3 == add(-1, -2)
