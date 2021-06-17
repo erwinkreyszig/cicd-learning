@@ -14,7 +14,7 @@ def multiply(val1, val2):
 	"""Multiplies 2 int numbers and returns the result"""
 	result = 0
 	for val in range(val2):
-		result += val1
+		result = add(result, val1)
 	return result
 
 def divide(val1, val2):
