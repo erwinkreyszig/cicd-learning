@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 def add(val1, val2):
 	"""Adds 2 int numbers and returns the result"""
 	if type(val1) != int or type(val2) != int:
