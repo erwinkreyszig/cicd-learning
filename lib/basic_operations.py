@@ -29,3 +29,6 @@ def test_subtract():
 	assert 1 == subtract(3, 2)
 	assert 1 == subtract(-1, -2)
 	assert 2 == subtract(1, -1)
+
+if __name__ == '__main__':
+	pass
