@@ -25,3 +25,7 @@ def test():
 	assert -3 == add(-1, -2)
 	assert 0 == add(1, -1)
 
+def test_subtract():
+	assert 1 == subtract(3, 2)
+	assert 1 == subtract(-1, -2)
+	assert 2 == subtract(1, -1)
