@@ -15,10 +15,7 @@ def subtract(val1, val2):
 
 def multiply(val1, val2):
 	"""Multiplies 2 int numbers and returns the result"""
-	result = 0
-	for val in range(val2):
-		result = add(result, val1)
-	return result
+	return val1 * val2
 
 def divide(val1, val2):
 	"""Divide an int number by another"""
@@ -36,4 +33,6 @@ def test_subtract():
 
   
 if __name__ == '__main__':
-	pass
+	print(multiply(2,4))
+	print(multiply(-4,-8))
+	print(multiply(4,-9))
