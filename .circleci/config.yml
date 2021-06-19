@@ -27,6 +27,7 @@ jobs:
             apt-get install wget
             wget https://bootstrap.pypa.io/get-pip.py
             python3 get-pip.py
+            apt-get install python3-venv
             python3 -m venv venv
             . venv/bin/activate
             pip install --upgrade pip
