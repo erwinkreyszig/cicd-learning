@@ -25,18 +25,6 @@ def divide(val1, val2):
     return val1 / val2
 
 
-def test():
-    assert 3 == add(1, 2)
-    assert -3 == add(-1, -2)
-    assert 0 == add(1, -1)
-
-
-def test_subtract():
-    assert 1 == subtract(3, 2)
-    assert 1 == subtract(-1, -2)
-    assert 2 == subtract(1, -1)
-
-
 if __name__ == '__main__':
     print(multiply(2, 4))
     print(multiply(-4, -8))
