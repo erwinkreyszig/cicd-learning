@@ -4,11 +4,17 @@
 class BasicOperations:
 
     @staticmethod
-    def add(val1, val2):
-        """Adds 2 int numbers and returns the result"""
-        if type(val1) != int or type(val2) != int:
-            raise Exception
-        return val1 + val2
+    def add(*args):
+        """Adds any number of arguments and returns the result"""
+        for i in args:
+            if type(i) != int:
+                raise Exception
+        if len(args) == 0:
+            return 0
+        elif len(args) == 1:
+            return args[0]
+        else:
+            return sum(args)
 
     @staticmethod
     def subtract(val1, val2):
@@ -32,8 +38,8 @@ class BasicOperations:
 
 
 if __name__ == '__main__':
-    operation = BasicOperations()
-    print(operation.subtract(2, 4))
-    print(operation.add(-4, -8))
-    print(operation.multiply(4, -9))
-    print(operation.divide(9, 2))
+    operation = BasicOperations() 
+    print(operation.add(-4))
+    print(operation.add(4, -9, -8))
+    print(operation.add())
+    print(operation.add(2, 4, 'a'))
