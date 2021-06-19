@@ -45,6 +45,7 @@ jobs:
           name: lookup directory
           command: |
             pwd
+            ls -l
 
       # step 5: deploy to google app engine
       #- run:
