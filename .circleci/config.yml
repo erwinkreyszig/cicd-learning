@@ -23,7 +23,6 @@ jobs:
             . venv/bin/activate
             mkdir test-results
             flake8 --exclude=venv* --statistics
-            cd tests
             python -m pytest -v
       # step 4: store test results
       - store_test_results:
