@@ -10,6 +10,7 @@ workflows:
             branches:
               only:
                 - main
+                - config-yml-edits
 
 jobs:
   build_and_deploy_job:
@@ -23,6 +24,8 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            wget https://bootstrap.pypa.io/get-pip.py
+            sudo python3 get-pip.py
             python3 -m venv venv
             . venv/bin/activate
             pip install --upgrade pip
