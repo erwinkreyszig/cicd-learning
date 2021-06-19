@@ -1,0 +1,58 @@
+# Python CircleCI 2.1 configuration file
+version: 2.1
+
+workflows:
+  version: 2
+  build_and_deploy_workflow:
+    jobs:
+      - build_and_deploy_job:
+          filters:
+            branches:
+              only:
+                - main
+
+jobs:
+  build_and_deploy_job:
+    docker:
+      - image: google/cloud-sdk
+    working_directory: ~/src
+    steps:
+      # step 1: obtain repo from github (main branch)
+      - checkout
+      # step 2: create virtual env and install dependencies
+      - run:
+          name: install dependencies
+          command: |
+            apt install -y python-pip
+            apt install -y python3-venv
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install --no-cache-dir -r requirements.txt
+      # step 3: run linter and tests
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            mkdir test-results
+            flake8 --exclude=venv* --statistics
+            python -m pytest -v
+      # step 4: store test results
+      #- store_test_results:
+      #    path: test-results/
+      #- run:
+      #    name: lookup directory
+      #    command: |
+      #      pwd
+      #      ls -l
+
+      # step 5: deploy to google app engine
+      - run:
+          name: deploy to app engine
+          command: |
+            echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
+            gcloud auth activate-service-account --key-file=/tmp/sa_key.json
+            rm /tmp/sa_key.json
+            gcloud config set project turnkey-guild-304701
+            gcloud config set compute/region asia-northeast1
+            gcloud app deploy app.yml
