@@ -41,13 +41,18 @@ jobs:
       # step 4: store test results
       #- store_test_results:
       #    path: test-results/
-      # step 5: deploy to google app engine
       - run:
-          name: deploy to app engine
+          name: lookup directory
           command: |
-            echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
-            gcloud auth activate-service-account --key-file=/tmp/sa_key.json
-            rm /tmp/sa_key.json
-            gcloud config set project turnkey-guild-304701
-            gcloud config set compute/region asia-northeast1
-            gcloud app deploy
+            pwd
+
+      # step 5: deploy to google app engine
+      #- run:
+      #    name: deploy to app engine
+      #    command: |
+      #      echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
+      #      gcloud auth activate-service-account --key-file=/tmp/sa_key.json
+      #      rm /tmp/sa_key.json
+      #      gcloud config set project turnkey-guild-304701
+      #      gcloud config set compute/region asia-northeast1
+      #      gcloud app deploy
