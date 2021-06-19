@@ -38,6 +38,6 @@ def test_subtract():
 
 
 if __name__ == '__main__':
-    print(multiply(2,4))
-    print(multiply(-4,-8))
-    print(multiply(4,-9))
+    print(multiply(2, 4))
+    print(multiply(-4, -8))
+    print(multiply(4, -9))
