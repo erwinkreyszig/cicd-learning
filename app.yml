@@ -1,4 +1,3 @@
 runtime: python39
 env_variables:
-  GCLOUD_PROJECT: 'turnkey-guild-304701'
   FLASK_APP: main.py
