@@ -24,8 +24,11 @@ class BasicOperations:
 
 
     def divide(self, val1, val2):
-        """Divide an int number by another"""
-        return val1 / val2
+        """Divides an int number by another, then returns a tuple of quotient and remainder"""
+	      quotient = int(val1 / val2)
+	      remainder = int(val1 % val2)
+	      t = (quotient, remainder) 
+	      return t
 
 
 if __name__ == '__main__':
