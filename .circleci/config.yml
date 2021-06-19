@@ -23,6 +23,8 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            apt install -y python-pip
+            apt install -y python3-venv
             python3 -m venv venv
             . venv/bin/activate
             pip install --upgrade pip
@@ -38,3 +40,19 @@ jobs:
       # step 4: store test results
       #- store_test_results:
       #    path: test-results/
+      #- run:
+      #    name: lookup directory
+      #    command: |
+      #      pwd
+      #      ls -l
+
+      # step 5: deploy to google app engine
+      - run:
+          name: deploy to app engine
+          command: |
+            echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
+            gcloud auth activate-service-account --key-file=/tmp/sa_key.json
+            rm /tmp/sa_key.json
+            gcloud config set project turnkey-guild-304701
+            gcloud config set compute/region asia-northeast1
+            gcloud app deploy
