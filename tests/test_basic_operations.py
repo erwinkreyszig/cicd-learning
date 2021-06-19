@@ -4,7 +4,7 @@ Unit tests for the basic_operations library
 """
 
 
-from lib.basic_operations import add, subtract
+from src.lib.basic_operations import add, subtract
 
 
 class TestBasicOperations(object):
