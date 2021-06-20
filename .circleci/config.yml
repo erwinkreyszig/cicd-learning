@@ -28,24 +28,23 @@ jobs:
             . venv/bin/activate
             pip install --no-cache-dir -r requirements.txt
       # step 3: run linter and tests
-      #- run:
-      #    name: run tests
-      #    command: |
-      #      . venv/bin/activate
-      #      mkdir test-results
-      #      flake8 --exclude=venv* --statistics
-      #     python -m pytest -v
-      #    environment:
-      #      PYTHONPATH: ~/src
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            mkdir test-results
+            flake8 --exclude=venv* --statistics
+           python3 -m pytest -v
       # step 4: store test results
       #- store_test_results:
       #    path: test-results/
-      - run:
-          name: lookup directory
-          command: |
-            pwd
-            ls -l
-            python -V
+
+      #- run:
+      #    name: lookup directory
+      #    command: |
+      #      pwd
+      #      ls -l
+      #      python -V
 
       # step 5: deploy to google app engine
       #- run:
