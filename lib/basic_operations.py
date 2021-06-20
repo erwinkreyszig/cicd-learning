@@ -30,15 +30,16 @@ class BasicOperations:
 
     @staticmethod
     def divide(val1, val2):
-        """Divides an int number by another, then returns a tuple of quotient and remainder"""
+        """Divides an int number by another, then returns a tuple of quotient
+        and remainder"""
         quotient = int(val1 / val2)
         remainder = int(val1 % val2)
-        t = (quotient, remainder) 
+        t = (quotient, remainder)
         return t
 
 
 if __name__ == '__main__':
-    operation = BasicOperations() 
+    operation = BasicOperations()
     print(operation.add(-4))
     print(operation.add(4, -9, -8))
     print(operation.add())
