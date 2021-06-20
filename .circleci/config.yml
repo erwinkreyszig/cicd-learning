@@ -16,6 +16,8 @@ jobs:
     docker:
       - image: google/cloud-sdk
     working_directory: ~/src
+    environment:
+      PYTHONPATH: ~/src
     steps:
       # step 1: obtain repo from github (main branch)
       - checkout
@@ -27,6 +29,12 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install --no-cache-dir -r requirements.txt
+      
+      - run:
+          name: check PYTHONPATH
+          command: |
+            echo $PYTHONPATH
+
       # step 3: run linter and tests
       - run:
           name: run tests
