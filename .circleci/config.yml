@@ -23,11 +23,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            apt install -y python-pip
             apt install -y python3-venv
             python3 -m venv venv
             . venv/bin/activate
-            pip install --upgrade pip
             pip install --no-cache-dir -r requirements.txt
       # step 3: run linter and tests
       - run:
