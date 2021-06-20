@@ -35,6 +35,8 @@ jobs:
             mkdir test-results
             flake8 --exclude=venv* --statistics
             python -m pytest -v
+          environment:
+            PYTHONPATH: ~/src
       # step 4: store test results
       #- store_test_results:
       #    path: test-results/
