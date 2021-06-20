@@ -45,6 +45,7 @@ jobs:
           command: |
             pwd
             ls -l
+            python -V
 
       # step 5: deploy to google app engine
       #- run:
