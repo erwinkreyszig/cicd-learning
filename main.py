@@ -10,7 +10,7 @@ def perform_addition():
 
 
 @app.route('/operations/subtract', methods=['GET'])
-def perform_addition():
+def perform_subtraction():
     # we are expecting ?args=50,24 (subtract 24 from 50)
     args = request.args  # this is a dict (but you cannot edit this)
     # since we are expecting args, we know that there will be
