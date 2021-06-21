@@ -17,7 +17,7 @@ jobs:
       - image: google/cloud-sdk
     working_directory: ~/src
     environment:
-      PYTHONPATH: ~/src
+      PYTHONPATH: "~/src:~/src/lib:~/src/tests"
     steps:
       # step 1: obtain repo from github (main branch)
       - checkout
