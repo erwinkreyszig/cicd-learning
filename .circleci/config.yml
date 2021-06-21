@@ -10,7 +10,6 @@ workflows:
             branches:
               only:
                 - main
-                - config-yml-fix
 
 jobs:
   build_and_deploy_job:
@@ -43,7 +42,6 @@ jobs:
             . venv/bin/activate
             mkdir test-results
             flake8 --exclude=venv* --statistics
-            python3 -m pytest -v
       # step 4: store test results
       #- store_test_results:
       #    path: test-results/
@@ -56,12 +54,12 @@ jobs:
       #      python -V
 
       # step 5: deploy to google app engine
-      #- run:
-      #    name: deploy to app engine
-      #    command: |
-      #      echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
-      #      gcloud auth activate-service-account --key-file=/tmp/sa_key.json
-      #      rm /tmp/sa_key.json
-      #      gcloud config set project turnkey-guild-304701
-      #      gcloud config set compute/region asia-northeast1
-      #      gcloud app deploy app.yml
+      - run:
+          name: deploy to app engine
+          command: |
+            echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
+            gcloud auth activate-service-account --key-file=/tmp/sa_key.json
+            rm /tmp/sa_key.json
+            gcloud config set project turnkey-guild-304701
+            gcloud config set compute/region asia-northeast1
+            gcloud app deploy app.yml
