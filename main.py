@@ -25,7 +25,7 @@ def perform_subtraction():
     # then we can subtract
     result = split_value_ints[0] - split_value_ints[1]
     # lastly return the result
-    return result
+    return str(result)  # string for now
 
 
 if __name__ == '__main__':
