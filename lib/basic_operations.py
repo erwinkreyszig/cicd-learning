@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import math
 
 
 class BasicOperations:
@@ -24,9 +25,17 @@ class BasicOperations:
         return val1 - val2
 
     @staticmethod
-    def multiply(val1, val2):
-        """Multiplies 2 int numbers and returns the result"""
-        return val1 * val2
+    def multiply(*args):
+        """Multiplies any number of arguments and returns the result"""
+        for i in args:
+            if type(i) != int:
+                raise Exception
+        if len(args) == 0:
+            return 0
+        elif len(args) == 1:
+            return args[0]
+        else:
+            return math.prod(args)
 
     @staticmethod
     def divide(val1, val2):
@@ -40,7 +49,7 @@ class BasicOperations:
 
 if __name__ == '__main__':
     operation = BasicOperations()
-    print(operation.add(-4))
-    print(operation.add(4, -9, -8))
-    print(operation.add())
-    print(operation.add(2, 4, 'a'))
+    print(operation.multiply(-4))
+    print(operation.multiply(4, -3, -2))
+    print(operation.multiply())
+    print(operation.multiply(2, 4, 'a'))
