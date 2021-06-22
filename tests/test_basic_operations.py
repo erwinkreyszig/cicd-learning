@@ -19,7 +19,7 @@ class TestBasicOperations(object):
         # testing a non-integer argument
         ex = None
         try:
-            sum = BasicOperations.add(1, 'a', 5)
+            BasicOperations.add(1, 'a', 5)
         except Exception as e:
             ex = e
         assert type(ex) == Exception
@@ -34,7 +34,7 @@ class TestBasicOperations(object):
         # testing a non-integer argument
         ex = None
         try:
-            diff = BasicOperations.subtract('a', 6)
+            BasicOperations.subtract('a', 6)
         except Exception as e:
             ex = e
         assert type(ex) == Exception

@@ -15,7 +15,7 @@ jobs:
   build_and_deploy_job:
     docker:
       - image: google/cloud-sdk
-    working_directory: ~/sr
+    working_directory: ~/src
     steps:
       # step 1: obtain repo from github (main branch)
       - checkout
