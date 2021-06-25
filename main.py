@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request
 from lib.basic_operations import BasicOperations
 
 
@@ -16,6 +16,7 @@ def perform_addition():
     result = BasicOperations.subtract(split_value_ints[0],
                                       split_value_ints[1])
     return str(result)
+
 
 @app.route('/operations/subtract', methods=['GET'])
 def perform_subtraction():
