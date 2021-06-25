@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from lib.basic_operations import BasicOperations
 
 
 app = Flask(__name__)
@@ -6,21 +7,28 @@ app = Flask(__name__)
 
 @app.route('/operations/add', methods=['GET'])
 def perform_addition():
-    return jsonify({'result': 'add test'})
-
+    dict_to_find_stuff = request.args
+    fetched_value = dict_to_find_stuff.get('args_from_browser')
+    split_value = fetched_value.split(',')
+    split_value_ints = []
+    for x in split_value:
+        split_value_ints.append(int(x))
+    result = BasicOperations.subtract(split_value_ints[0],
+                                      split_value_ints[1])
+    return str(result)
 
 @app.route('/operations/subtract', methods=['GET'])
 def perform_subtraction():
     """
-    when you type "http://127.0.0.1/operations/subtract?args=4,9" on a browser,
+    when you type "http://127.0.0.1/operations/subtract?xxx=4,9" on a browser,
     the perform_addition method will be called beoause the
     "/operations/subtract" from the url matches the one on the
     @app.route('/operations/subtract') part
 
-    to get the "?args=4,9" part, this is already in the request.args dictionary
+    to get the "?xxx=4,9" part, this is already in the request.args dictionary
     object, like this:
-        request.args = {'args': '4,9'} <- '4,9'is a string
-                                          * values will always be strings
+        request.args = {'xxx': '4,9'} <- '4,9'is a string
+                                        * values will always be strings
     everything behind the question mark should be pairs separated by &, the
     pairs are the ones on the left and right side of the equal sign, like this:
         ?fruit=apple&count=7 -> for this, request.args will have
