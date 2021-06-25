@@ -10,15 +10,12 @@ workflows:
             branches:
               only:
                 - main
-                - config-yml-fix
 
 jobs:
   build_and_deploy_job:
     docker:
       - image: google/cloud-sdk
     working_directory: ~/src
-    environment:
-      PYTHONPATH: "~/src:~/src/lib:~/src/tests"
     steps:
       # step 1: obtain repo from github (main branch)
       - checkout
@@ -29,21 +26,14 @@ jobs:
             apt install -y python3-venv
             python3 -m venv venv
             . venv/bin/activate
-            pip3 install --no-cache-dir -r requirements.txt
-      
-      - run:
-          name: check PYTHONPATH
-          command: |
-            echo $PYTHONPATH
-
+            pip install --no-cache-dir -r requirements.txt
       # step 3: run linter and tests
       - run:
           name: run tests
           command: |
             . venv/bin/activate
-            mkdir test-results
             flake8 --exclude=venv* --statistics
-            python3 -m pytest -v
+            python -m pytest -v
       # step 4: store test results
       #- store_test_results:
       #    path: test-results/
@@ -56,12 +46,12 @@ jobs:
       #      python -V
 
       # step 5: deploy to google app engine
-      #- run:
-      #    name: deploy to app engine
-      #    command: |
-      #      echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
-      #      gcloud auth activate-service-account --key-file=/tmp/sa_key.json
-      #      rm /tmp/sa_key.json
-      #      gcloud config set project turnkey-guild-304701
-      #      gcloud config set compute/region asia-northeast1
-      #      gcloud app deploy app.yml
+      - run:
+          name: deploy to app engine
+          command: |
+            echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
+            gcloud auth activate-service-account --key-file=/tmp/sa_key.json
+            rm /tmp/sa_key.json
+            gcloud config set project turnkey-guild-304701
+            gcloud config set compute/region asia-northeast1
+            gcloud app deploy app.yml
