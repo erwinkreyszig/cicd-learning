@@ -13,8 +13,7 @@ def perform_addition():
     split_value_ints = []
     for x in split_value:
         split_value_ints.append(int(x))
-    result = BasicOperations.subtract(split_value_ints[0],
-                                      split_value_ints[1])
+    result = BasicOperations.add(split_value_ints[0], split_value_ints[1])
     return str(result)
 
 
