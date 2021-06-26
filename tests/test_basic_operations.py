@@ -38,3 +38,18 @@ class TestBasicOperations(object):
         except Exception as e:
             ex = e
         assert type(ex) == Exception
+
+    def test_multiply(self):
+        # testing O or more arguments
+        assert 0 == BasicOperations.multiply()
+        # testing negative arguments
+        assert -2 == BasicOperations.multiply(-2)
+        # testing negative and positive arguments
+        assert 24 == BasicOperations.multiply(3, 4, 2)
+        # testing a non-integer argument
+        ex = None
+        try:
+            BasicOperations.multiply('a', 6)
+        except Exception as e:
+            ex = e
+        assert type(ex) == Exception
