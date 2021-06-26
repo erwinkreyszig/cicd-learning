@@ -38,3 +38,7 @@ class TestBasicOperations(object):
         except Exception as e:
             ex = e
         assert type(ex) == Exception
+
+    def test_multiply(self):
+        assert 20 == BasicOperations.multiply(5, 4)
+        
