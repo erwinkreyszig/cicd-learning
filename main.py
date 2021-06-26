@@ -5,6 +5,11 @@ from lib.basic_operations import BasicOperations
 app = Flask(__name__)
 
 
+@app.route('/', methods=['GET'])
+def default():
+    return 'Hello.'
+
+
 @app.route('/operations/add', methods=['GET'])
 def perform_addition():
     dict_to_find_stuff = request.args
