@@ -12,7 +12,7 @@ def default():
 
 @app.route('/operations/add', methods=['GET'])
 def perform_addition():
-    # split the value, then check if any of the elements can be turned into 
+    # split the value, then check if any of the elements can be turned into
     # an int, if can, make it an int
     dict_to_find_stuff = request.args
     fetched_value = dict_to_find_stuff.get('args_from_browser')
