@@ -12,13 +12,21 @@ def default():
 
 @app.route('/operations/add', methods=['GET'])
 def perform_addition():
+    # split the value, then check if any of the elements can be turned into 
+    # an int, if can, make it an int
     dict_to_find_stuff = request.args
     fetched_value = dict_to_find_stuff.get('args_from_browser')
     split_value = fetched_value.split(',')
-    split_value_ints = []
+    split_values = []
     for x in split_value:
-        split_value_ints.append(int(x))
-    result = BasicOperations.add(split_value_ints[0], split_value_ints[1])
+        if x.isnumeric():
+            x = int(x)
+        split_values.append(x)
+    try:
+        result = BasicOperations.add(*split_values)
+    except Exception as e:
+        e = str(e)
+        return e
     return str(result)
 
 
