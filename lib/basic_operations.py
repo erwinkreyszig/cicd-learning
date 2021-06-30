@@ -15,22 +15,21 @@ class BasicOperations:
         string = ""
         if len(args) == 0:
             return 0
-        elif len(args) == 1:
+        if len(args) == 1:
             return args[0]
+        if type(args[0]) == str:
+            for i in args[1:]:
+                if type(i) != str:
+                    raise Exception('You can\'t concatenate an integer to' +
+                                    ' a string!')
+                string += i   
+            return string
         else:
-            if type(args[0]) == str:
-                for i in args:
-                    if type(i) != str:
-                        raise Exception('You can\'t concatenate an integer to' +
-                                        ' a string!')
-                    string += i   
-                return string
-            else:
-                for i in args:
-                    if type(i) != int:
-                        raise Exception('You can\'t concatenate a string to' +
-                                        ' an integer!')
-                return sum(args)
+            for i in args:
+                if type(i) != int:
+                    raise Exception('You can\'t concatenate a string to' +
+                                    ' an integer!')
+            return sum(args)
 
     @staticmethod
     def subtract(val1, val2):
