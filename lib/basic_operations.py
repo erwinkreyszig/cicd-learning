@@ -7,14 +7,28 @@ class BasicOperations:
     @staticmethod
     def add(*args):
         """Adds any number of arguments and returns the result"""
-        for i in args:
-            if type(i) != int:
-                raise Exception
+        # check first how many arguments was passed
+        # if none, return zero
+        # if one, return that
+        # if more than one, get the type of the first one
+        # then use this to check the type of the other arguments
+        string = ""
         if len(args) == 0:
             return 0
-        elif len(args) == 1:
+        if len(args) == 1:
             return args[0]
+        if type(args[0]) == str:
+            for i in args[1:]:
+                if type(i) != str:
+                    raise Exception('You can\'t concatenate an integer to' +
+                                    ' a string!')
+                string += i   
+            return string
         else:
+            for i in args:
+                if type(i) != int:
+                    raise Exception('You can\'t concatenate a string to' +
+                                    ' an integer!')
             return sum(args)
 
     @staticmethod
@@ -49,7 +63,10 @@ class BasicOperations:
 
 if __name__ == '__main__':
     operation = BasicOperations()
-    print(operation.multiply(-4))
-    print(operation.multiply(4, -3, -2))
-    print(operation.multiply())
-    print(operation.multiply(2, 4, 'a'))
+    print(operation.add())
+    print(operation.add(1))
+    print(operation.add("a"))
+    print(operation.add(2, 4, 8, 9))
+    print(operation.add("a", "b", "c"))
+    # print(operation.add(2, "a"))
+    print(operation.add("a", 3))
