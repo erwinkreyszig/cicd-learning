@@ -16,6 +16,8 @@ class TestBasicOperations(object):
         assert -6 == BasicOperations.add(-6)
         # testing more than one argument
         assert 9 == BasicOperations.add(1, -1, 5, 4)
+        # testing more than one string argument
+        assert 'abcde' == BasicOperations.add('a', 'b', 'cde')
         # testing a non-integer argument
         ex = None
         try:
