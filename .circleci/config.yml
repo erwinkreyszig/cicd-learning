@@ -10,6 +10,7 @@ workflows:
             branches:
               only:
                 - main
+                - display-python-version-at-circleci
 
 jobs:
   build_and_deploy_job:
@@ -19,6 +20,12 @@ jobs:
     steps:
       # step 1: obtain repo from github (main branch)
       - checkout
+      # step 1.5: check python version
+      - run:
+          name: check python versions
+          command: |
+            python3 -V
+            python -V
       # step 2: create virtual env and install dependencies
       - run:
           name: install dependencies
@@ -28,30 +35,22 @@ jobs:
             . venv/bin/activate
             pip install --no-cache-dir -r requirements.txt
       # step 3: run linter and tests
-      - run:
-          name: run tests
-          command: |
-            . venv/bin/activate
-            flake8 --exclude=venv* --statistics
-            python -m pytest -v
+      #- run:
+      #    name: run tests
+      #    command: |
+      #      . venv/bin/activate
+      #      flake8 --exclude=venv* --statistics
+      #      python3 -m pytest -v
       # step 4: store test results
       #- store_test_results:
       #    path: test-results/
-
-      #- run:
-      #    name: lookup directory
-      #    command: |
-      #      pwd
-      #      ls -l
-      #      python -V
-
       # step 5: deploy to google app engine
-      - run:
-          name: deploy to app engine
-          command: |
-            echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
-            gcloud auth activate-service-account --key-file=/tmp/sa_key.json
-            rm /tmp/sa_key.json
-            gcloud config set project turnkey-guild-304701
-            gcloud config set compute/region asia-northeast1
-            gcloud app deploy app.yml
+      #- run:
+      #    name: deploy to app engine
+      #    command: |
+      #      echo ${GCLOUD_SERVICE_ACCOUNT_KEY} > /tmp/sa_key.json
+      #      gcloud auth activate-service-account --key-file=/tmp/sa_key.json
+      #      rm /tmp/sa_key.json
+      #      gcloud config set project turnkey-guild-304701
+      #      gcloud config set compute/region asia-northeast1
+      #      gcloud app deploy app.yml
