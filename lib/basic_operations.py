@@ -22,7 +22,7 @@ class BasicOperations:
                 if type(i) != str:
                     raise Exception('You can\'t concatenate an integer to' +
                                     ' a string!')
-                string += i   
+                string += i
             return string
         else:
             for i in args:
