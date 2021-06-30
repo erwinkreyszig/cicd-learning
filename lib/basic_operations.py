@@ -21,13 +21,15 @@ class BasicOperations:
             if type(args[0]) == str:
                 for i in args:
                     if type(i) != str:
-                        raise Exception('Exception A')
+                        raise Exception('You can\'t concatenate an integer to' +
+                                        ' a string!')
                     string += i   
                 return string
             else:
                 for i in args:
                     if type(i) != int:
-                        raise Exception('Exception B')
+                        raise Exception('You can\'t concatenate a string to' +
+                                        ' an integer!')
                 return sum(args)
 
     @staticmethod
