@@ -25,8 +25,7 @@ def perform_addition():
     try:
         result = BasicOperations.add(*split_values)
     except Exception as e:
-        e = str(e)
-        return e
+        return str(e)
     return str(result)
 
 
