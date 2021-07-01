@@ -18,7 +18,7 @@ class BasicOperations:
         if len(args) == 1:
             return args[0]
         if type(args[0]) == str:
-            for i in args[1:]:
+            for i in args:
                 if type(i) != str:
                     raise Exception('You can\'t concatenate an integer to' +
                                     ' a string!')
