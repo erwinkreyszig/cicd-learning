@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import math
 
 
 class BasicOperations:
@@ -49,7 +48,12 @@ class BasicOperations:
         elif len(args) == 1:
             return args[0]
         else:
-            return math.prod(args)
+            # TODO: return to this: return math.prod(args)
+            # when version at circleci container is 3.8+is
+            product = 1
+            for x in args:
+                product *= x
+            return product
 
     @staticmethod
     def divide(val1, val2):
