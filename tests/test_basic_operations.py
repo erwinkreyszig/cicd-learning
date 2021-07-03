@@ -55,3 +55,18 @@ class TestBasicOperations(object):
         except Exception as e:
             ex = e
         assert type(ex) == Exception
+
+    def test_divide(self):
+        # testing positive arguments
+        assert (0, 2) == BasicOperations.divide(2, 5)
+        # testing negative arguments
+        assert (2, -1) == BasicOperations.divide(-5, -2)
+        # testing negative and positive arguments
+        assert (-2, 0) == BasicOperations.divide(8, -4)
+        # testing a non-integer argument
+        ex = None
+        try:
+            BasicOperations.divide('a', 6)
+        except Exception as e:
+            ex = e
+        assert type(ex) == TypeError

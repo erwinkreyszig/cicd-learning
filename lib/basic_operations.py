@@ -67,10 +67,6 @@ class BasicOperations:
 
 if __name__ == '__main__':
     operation = BasicOperations()
-    print(operation.add())
-    print(operation.add(1))
-    print(operation.add("a"))
-    print(operation.add(2, 4, 8, 9))
-    print(operation.add("a", "b", "c"))
-    # print(operation.add(2, "a"))
-    print(operation.add("a", 3))
+    print(operation.divide(2, 5))
+    print(operation.divide(-5, -2))
+    print(operation.divide(8, -4))
