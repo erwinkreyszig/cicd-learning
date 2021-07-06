@@ -64,9 +64,19 @@ class BasicOperations:
         t = (quotient, remainder)
         return t
 
+    @staticmethod
+    def add_and_multiply(*args, op):
+        """Depending on the keyword argument, adds or multiply any number of 
+        arguments and returns the result"""
+        if op == 'add':
+            res = BasicOperations.add(*args)
+        if op == 'multiply':
+            if len(args) == 0:
+                raise Exception
+            res = BasicOperations.multiply(*args)
+        return res
 
 if __name__ == '__main__':
-    operation = BasicOperations()
-    print(operation.divide(2, 5))
-    print(operation.divide(-5, -2))
-    print(operation.divide(8, -4))
+    print(BasicOperations.add_and_multiply('O chan ', 'and ', 'S chan', op='add'))
+    print(BasicOperations.add_and_multiply(-5, -2, op='multiply'))
+    print(BasicOperations.add_and_multiply(op='multiply'))
