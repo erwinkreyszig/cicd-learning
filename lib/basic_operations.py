@@ -79,6 +79,6 @@ class BasicOperations:
 
 if __name__ == '__main__':
     print(BasicOperations.add_and_multiply('O chan ', 'and ', 'S chan',
-        op='add'))
+                                           op='add'))
     print(BasicOperations.add_and_multiply(-5, -2, op='multiply'))
     print(BasicOperations.add_and_multiply(op='multiply'))
