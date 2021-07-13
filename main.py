@@ -33,7 +33,7 @@ def perform_addition():
 def perform_subtraction():
     """
     when you type "http://127.0.0.1/operations/subtract?xxx=4,9" on a browser,
-    the perform_addition method will be called beoause the
+    the perform_addition method will be called because the
     "/operations/subtract" from the url matches the one on the
     @app.route('/operations/subtract') part
 
@@ -74,6 +74,46 @@ def perform_subtraction():
                                       split_value_ints[1])
     # lastly return the result
     return str(result)  # string for now
+
+
+@app.route('/operations/add_or_multiply', methods=['GET'])
+def perform_addition_or_multiplication():
+    """
+    1. check if the key 'op' is in the request.args dictionary
+        if it is not there return a message saying you need the 'op' key
+        if it is there, get the value for the 'op' key
+        1.1. if the value of the 'op' key is not 'add' nor 'multiply',
+            output a message that says you don't know that operation
+    2. check if the key 'args_from_browser' is in the request.args dictionary
+        if it is not there, output a message that says:
+            "nothing to add" if the value of 'op' is 'add'
+            "nothing to multiply" if the value of 'op' is 'multiply'
+        if it is there, get the value because you will need it later
+    3. pass the separated items from the 'args_from_browser' and op
+        to BasicOperations.add_or_multiply
+    """
+    print(request.args)
+    if 'op' not in request.args:
+        return "You need the 'op' key."
+    op = request.args.get('op')
+    if op != 'add' and op != 'multiply':
+        return "I don't know that operation."
+    if 'args_from_browser' not in request.args:
+        if op == 'add':
+            return "Nothing to add"
+        else:
+            return "Nothing to multiply"
+    args_from_browser = request.args.get('args_from_browser')
+    split_args = args_from_browser.split(',')
+    split_args_list = []
+    for something in split_args:
+        if something.isnumeric():
+            something = int(something)
+        split_args_list.append(something)
+    result = BasicOperations.add_and_multiply(*split_args_list, op=op)
+    print(type(result))
+    print(result)
+    return str(result)
 
 
 if __name__ == '__main__':
